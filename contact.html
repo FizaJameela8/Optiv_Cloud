@@ -154,42 +154,10 @@
                             Our support team is just one message away."</p>
 
                         <!-- CONTACT FORM -->
-                        <form class="contact-form">
-                            <input type="text" name="name" placeholder="Your Name" required>
-                            <input type="email" name="email" placeholder="Your Email" required>
-                            <input type="text" name="contact" placeholder="Contact Number" required>
-                            <textarea name="message" placeholder="Your Message" required></textarea>
-                            <button type="submit">Send Message</button>
-                        </form>
-
-                        <script>
-                            document.querySelector(".contact-form").addEventListener("submit", function (e) {
-                                e.preventDefault();
-
-                                const form = e.target; // the form element
-
-                                const formData = {
-                                    name: form.name.value,
-                                    email: form.email.value,
-                                    contactNo: form.contact.value, // matches entity field
-                                    message: form.message.value
-                                };
-
-                                fetch("http://localhost:8080/contact", {
-                                    method: "POST",
-                                    headers: { "Content-Type": "application/json" },
-                                    body: JSON.stringify(formData)
-                                })
-                                    .then(response => response.text())
-                                    .then(data => {
-                                        alert(data);
-                                        form.reset();
-                                    })
-                                    .catch(err => console.error(err));
-                            });
-
-                        </script>
-
+                          <!-- CONTACT FORM -->
+                      <div class="contact-form">
+                       <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdMCKu8qgr9cE0J7XbauJf8Cq0qOwG32sffpUARXYBly4Wb8Q/viewform?embedded=true" width="640" height="959" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+</div>
                     </div>
                 </div>
             </div>
