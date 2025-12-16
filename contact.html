@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+
+            margin-left: 10%;
+            margin-right: 10%;
+        }
+
+        .linktext {
+            color: rgb(58, 77, 104);
+            font-size: 5vh;
+            transition: 0.3s ease;
+        }
+
+        .linktext a {
+            text-decoration: none;
+            color: rgb(58, 77, 104);
+            transition: 0.3s ease;
+        }
+
+        .linktext:hover,
+        .linktext a:hover {
+            transform: scale(1.1);
+            color: rgb(75, 109, 109);
+        }
+
+        .contactdetails {
+            color: rgb(122, 202, 255);
+        }
+
+        .contact-form {
+            margin-top: 20px;
+            max-width: 400px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+
+        .contact-form textarea {
+            height: 100px;
+            resize: none;
+        }
+
+        .contact-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: rgb(58, 77, 104);
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .contact-form button:hover {
+            background-color: rgb(75, 109, 109);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HEADER SECTION -->
+    <div class="page 1" style="background-color: rgba(87, 224, 218, 0.24);">
+        <header class="header-section">
+            <div class="header-content">
+
+                <!-- Top bar -->
+                <div class="header-top-section">
+                    <div class="left-section">
+
+                        <a href="mailto:Info@optivcloud.com" class="header-top-link">Info@optivcloud.com</a>
+
+                        <div class="header-top-link-separator">|</div>
+                        <a href="tel:+919449007120" class="header-top-link">+91-9449007120</a>
+                    </div>
+                </div>
+
+                <hr>
+
+                <!-- NAV BAR -->
+                <div class="header-bottom-section">
+
+                    <div class="nav">
+
+                        <!-- Logo -->
+                        <div class="logo">
+                            <img src="img/logo.png" width="100" height="100">
+
+                        </div>
+
+                        <!-- Desktop Navigation -->
+                        <div class="navigation">
+                            <a href="index.html" class="nav-link">Home</a>
+                        </div>
+
+                        <!-- Burger Icon (MOBILE ONLY) -->
+                        <div class="burger" onclick="toggleMenu()">☰</div>
+
+                        <!-- Get Started -->
+                        <div class="getstarted">
+                            <a href="#main"><button class="getstartedbnt">Get Started</button></a>
+                        </div>
+
+                    </div> <!-- nav end -->
+
+                    <!-- MOBILE MENU (Moved OUTSIDE nav) -->
+                    <div class="mobile-nav" id="mobileNav">
+                        <a href="index.html">Home</a>
+
+                    </div>
+
+                </div>
+            </div>
+        </header>
+        <main>
+            <!----home page------->
+            <div id="main">
+                <img class="backgroundimg" src="img/bg.png">
+                <div class="contact-info">
+                    <p class="intro" style="margin-bottom: 0;"><b>Contact <span class="ele-font">Us</span></b></p>
+                    <p>"Have a project in mind or need help with your IT solutions?
+                        <br>Our team is always ready to assist you with quick and reliable support."
+                    </p>
+
+                </div>
+            </div>
+            <div id="about" style="background-color: white;" class="Eleminating-it-chalenges">
+                <div class="eleminating-content" style="height: auto;">
+
+                    <div class="ele-img" style="transform: scaleX(-1); height: 50%; width: 50%;">
+                        <img style="border-radius: 10%;box-shadow: 2px 2px 5px black;" src="img/team.jpg">
+                    </div>
+
+                    <div class="ele-content">
+                        <p class="ele-head"><b>Get <span class="ele-font">in touch</span></b></p>
+                        <p>"Have questions or need guidance?
+                            Our support team is just one message away."</p>
+
+                        <!-- CONTACT FORM -->
+                        <form class="contact-form">
+                            <input type="text" name="name" placeholder="Your Name" required>
+                            <input type="email" name="email" placeholder="Your Email" required>
+                            <input type="text" name="contact" placeholder="Contact Number" required>
+                            <textarea name="message" placeholder="Your Message" required></textarea>
+                            <button type="submit">Send Message</button>
+                        </form>
+
+                        <script>
+                            document.querySelector(".contact-form").addEventListener("submit", function (e) {
+                                e.preventDefault();
+
+                                const form = e.target; // the form element
+
+                                const formData = {
+                                    name: form.name.value,
+                                    email: form.email.value,
+                                    contactNo: form.contact.value, // matches entity field
+                                    message: form.message.value
+                                };
+
+                                fetch("http://localhost:8080/contact", {
+                                    method: "POST",
+                                    headers: { "Content-Type": "application/json" },
+                                    body: JSON.stringify(formData)
+                                })
+                                    .then(response => response.text())
+                                    .then(data => {
+                                        alert(data);
+                                        form.reset();
+                                    })
+                                    .catch(err => console.error(err));
+                            });
+
+                        </script>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </main>
+        <footer>
+            <div class="footer-container" style="margin-top: -100px;">
+                <div class="footer1">
+                    <div class="subf1">
+                        <img src="img/logo.png" height="150px" width="150px" style="display: inline;">
+
+                        <p>Next gen cloud and on premises IT solutions built for security,
+                            performance, and business growth. We provide businesses with trusted networking, IT support,
+                            cloud services, and cybersecurity protection to stay ahead in the digital world.</p>
+
+                    </div>
+
+                    <div class="subf2">
+                        <div class="footer-links">
+                            <div>
+                                <h1 style="display: block;">Link</h1>
+                            </div>
+                            <div>
+                                <a href="index.html">Home</a>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+                    <div class="subf4">
+                        <div class="footer-services">
+
+                            <h1 style="display: block;">Contact
+                            </h1>
+
+                            <p>565, Workzone Office Space, 9th Cross Rd, 7th Main Road, Sarakki 3rd Phase, J. P. Nagar,
+                                Bengaluru, Karnataka 560078</p>
+                            <p>
+                                +91 - 9449007120</p>
+                            <p>info@optivcloud.com</p>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="footer2">
+                    © 2025 Optiv Cloud All rights reserved.
+                </div>
+            </div>
+        </footer>
+        <script src="script.js"></script>
+</body>
+
+</html>
